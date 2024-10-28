@@ -29,8 +29,8 @@ API предоставляет следующие конечные точки:
 1. **Клонируйте репозиторий**:
 
     ```bash
-    git clone https://github.com/your-username/mentorship-api.git
-    cd mentorship-api
+    git clone https://github.com/ssmirnooov/Mentorship.git
+    cd mentorship
     ```
 
 2. **Создайте `.env` файл**:
