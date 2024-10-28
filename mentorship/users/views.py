@@ -10,7 +10,7 @@ from rest_framework.views import APIView
 User = get_user_model()
 
 
-class UserRegistationView(generics.CreateAPIView):
+class UserRegistrationView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserRegistationSerializer
 
