@@ -5,6 +5,7 @@ from django.contrib.auth import get_user_model
 from rest_framework_simplejwt.tokens import RefreshToken
 from .serializers import UserRegistationSerializer, UserSerializer
 from rest_framework.views import APIView
+from .tasks import send_welcome_email
 
 
 User = get_user_model()
@@ -13,6 +14,11 @@ User = get_user_model()
 class UserRegistrationView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserRegistationSerializer
+
+    def perform_create(self, serializer):
+        user = serializer.save()
+        if user.email:
+            send_welcome_email.delay(user.email)
 
 
 class UserListView(generics.ListAPIView):
