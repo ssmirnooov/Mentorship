@@ -7,13 +7,11 @@ load_dotenv()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-# Секретный ключ и отладка
 SECRET_KEY = os.getenv("SECRET_KEY", "your-secret-key")
 DEBUG = os.getenv("DEBUG", "False") == "True"
 
 ALLOWED_HOSTS = os.getenv("ALLOWED_HOSTS", "*").split(",")
 
-# Приложения
 INSTALLED_APPS = [
     "django.contrib.admin",
     "django.contrib.auth",
@@ -25,7 +23,6 @@ INSTALLED_APPS = [
     "users",
 ]
 
-# Настройки DRF
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": (
         "rest_framework_simplejwt.authentication.JWTAuthentication",
@@ -35,13 +32,11 @@ REST_FRAMEWORK = {
     )
 }
 
-# Настройки Simple JWT
 SIMPLE_JWT = {
     "ACCESS_TOKEN_LIFETIME": timedelta(minutes=30),
     "REFRESH_TOKEN_LIFETIME": timedelta(days=1)
 }
 
-# Middleware
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
@@ -52,7 +47,6 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
 ]
 
-# Настройки URL
 ROOT_URLCONF = "mentorship.urls"
 
 TEMPLATES = [
@@ -73,7 +67,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "mentorship.wsgi.application"
 
-# База данных: использование PostgreSQL вместо SQLite
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
@@ -85,7 +78,6 @@ DATABASES = {
     }
 }
 
-# Валидация паролей
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator"},
     {"NAME": "django.contrib.auth.password_validation.MinimumLengthValidator"},
@@ -93,20 +85,16 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
 
-# Интернационализация
 LANGUAGE_CODE = "en-us"
 TIME_ZONE = "UTC"
 USE_I18N = True
 USE_TZ = True
 
-# Файлы статики
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# Тип поля для ключей по умолчанию
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
-# Настройки Celery
 CELERY_BROKER_URL = os.getenv('CELERY_BROKER_URL', 'redis://redis:6379/0')
 CELERY_RESULT_BACKEND = os.getenv('CELERY_RESULT_BACKEND', 'redis://redis:6379/0')
 CELERY_ACCEPT_CONTENT = ['json']
