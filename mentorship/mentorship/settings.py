@@ -5,6 +5,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'mentorship.settings')
+
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 SECRET_KEY = os.getenv("SECRET_KEY", "your-secret-key")
